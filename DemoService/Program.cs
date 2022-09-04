@@ -13,7 +13,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<Context>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("Context") ?? throw new InvalidOperationException("Connection string 'Context' not found.")));
 
-builder.Services.AddSingleton<ImageService>();
+builder.Services.AddScoped<IImageServices, ImageService>();
 
 var app = builder.Build();
 

@@ -4,15 +4,16 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DemoService.Services
 {
-	public class ImageService
+	public class ImageService : IImageServices
 	{
-		private List<ImageModel> _images;
-		public ImageService()
+		private readonly Context _context;
+		public ImageService(Context context)
 		{
+			_context = context;
 		}
 
-		public async Task<List<ImageModel>> GetAll() => _images;
-		public async Task<ImageModel> GetById(int Id) => _images.Where(item => item.Id == Id).FirstOrDefault();
-		public async Task<ImageModel> Get(ImageModel model) => _images.Find(item => item == model);
+		public async Task<List<ImageModel>> GetAll() => await _context.ImageModel.ToListAsync();
+		public async Task<ImageModel> GetById(int Id) => await _context.ImageModel.Where(item => item.Id == Id).FirstOrDefaultAsync();
+		public async Task<ImageModel> Get(ImageModel model) => await _context.ImageModel.FindAsync(model);
 	}
 }

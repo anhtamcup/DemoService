@@ -8,8 +8,8 @@ namespace DemoService.Controllers
 	[ApiController]
 	public class ImageController : ControllerBase
 	{
-		private readonly ImageService _imageService;
-		public ImageController(ImageService imageService)
+		private readonly IImageServices _imageService;
+		public ImageController(IImageServices imageService)
 		{
 			_imageService = imageService;
 		}
