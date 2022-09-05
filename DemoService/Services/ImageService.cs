@@ -13,7 +13,7 @@ namespace DemoService.Services
 		}
 
 		public async Task<List<ImageModel>> GetAll() => await _context.ImageModel.ToListAsync();
-		public async Task<ImageModel> GetById(int Id) => await _context.ImageModel.Where(item => item.Id == Id).FirstOrDefaultAsync();
+		public async Task<ImageModel> GetById(int Id) => await _context.ImageModel.FirstOrDefaultAsync(item => item.Id == Id);
 		public async Task<ImageModel> Get(ImageModel model) => await _context.ImageModel.FindAsync(model);
 	}
 }
